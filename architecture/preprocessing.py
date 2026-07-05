@@ -28,12 +28,17 @@ class SpeechCommands(Dataset):
             sample_rate=SAMPLE_RATE,
             n_mfcc=N_MFCC,
             melkwargs={
-                'n_fft': 400,
-                'hop_length': 160,
-                'n_mels': 40,
-                'f_max': 8000
+                'n_fft': 400, #25 ms window @ 16khz
+                'hop_length': 160, # 10 ms hop step @ 16khz
+                'n_mels': 40, # 40 mel filter banks applied 
+                'f_max': 8000 # highest frequency in mel filter banks (8000hz)
             }
         )
+        
+        #augments audio to be more accurate to real audio
+        self.freq_mask = T.FrequencyMasking(freq_mask_param=10)
+        self.time_mask = T.TimeMasking(time_mask_param=20)
+        self.subset = subset
         
         self.label_idx = {label: i for i, label in enumerate(LABELS)}
         
@@ -53,6 +58,10 @@ class SpeechCommands(Dataset):
         # MFCC transformation is in shape (1, 30, 101)
         # 30 coefficients (N_MFCC), ~101 time frames for 1s @ hop_length=160
         mfcc = self.mfcc_transform(waveform)
+        
+        if self.subset == 'training':
+            mfcc = self.freq_mask(mfcc)
+            mfcc = self.time_mask(mfcc)
         
         label_idx = self.label_idx[label]
         return mfcc, label_idx

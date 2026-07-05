@@ -4,7 +4,7 @@ from preprocessing import SpeechCommands
 from model import WordClassifierCNN
 import torch.nn as nn
 
-def train(n_epochs=20, lr=1e-3, batch_size=64):
+def train(n_epochs=50, lr=1e-3, batch_size=64):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     train_dataset = SpeechCommands(subset='training')
