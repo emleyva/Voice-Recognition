@@ -2,7 +2,7 @@
 
 This is a word classification model, trained on the Google Speech Commands dataset. This model uses a CNN to identify numbers spoken from zero to nine with a 95.9% accuracy rate. 
 
-## Sample
+## Samples
 
 https://github.com/user-attachments/assets/22aee224-bb40-4b17-bd1d-d22ff3e71e9f
 
