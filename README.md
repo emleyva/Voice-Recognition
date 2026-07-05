@@ -5,9 +5,11 @@ This is a word classification model, trained on the Google Speech Commands datas
 ## Sample
 
 https://github.com/user-attachments/assets/22aee224-bb40-4b17-bd1d-d22ff3e71e9f
+
 Single word audio clip containing "nine". Uses inference.py. Model identifies "nine" with confidence 0.9997. 
 
 https://github.com/user-attachments/assets/08221bf5-825a-4a30-83b9-e8ef9e142640
+
 Multi-word audio clip containing "five". Uses extract_digits.py. Model identifies "five" in the first chunk with confidence 0.9620. In the two suceeding chunks, no number is recognized. 
 
 ## Architecture 
